@@ -1,0 +1,43 @@
+---
+kind: Pipeline
+apiVersion: v1alpha1
+metadata:
+  name: pingpong
+  namespace: acaleph
+spec:
+  selector:
+    matchLabels:
+      app: pingpong
+      type: api
+  template:
+    metadata:
+      name: pingpong
+      labels:
+        app: service
+        type: api
+    stages:
+      - name: Build and Test
+        type: command
+        params:
+          image: golang:1.6
+          command:
+            - make build
+        artifacts:
+          - build/bin/*
+      - name: Package App
+        type: docker_build
+        params:
+          image: docker:1.8.3
+          command:
+            - docker
+            - build
+            - --build-arg
+            - ARG_SRC=...
+      - name: Publish to Quay
+        type: docker_publish
+        params:
+          external_registry: quay.io
+          external_image_name: acaleph/kontinuous
+          require_credentials: "TRUE"
+        secrets:
+          - docker-credentials
