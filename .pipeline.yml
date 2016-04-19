@@ -15,29 +15,50 @@ spec:
       labels:
         app: service
         type: api
+    # move secrets to build level instead
+    # of stage level
+    notif:
+      - type: slack
+        metadata:
+          url: 
+          channel: 
+          user: kontinuous
+    secrets:
+      - pingpong-secrets
     stages:
-      - name: Build and Test
+      - name: Build and Unit Test
         type: command
         params:
           image: golang:1.6
           command:
-            - make build
-        artifacts:
-          - build/bin/*
-      - name: Package App
-        type: docker_build
-        params:
-          image: docker:1.8.3
-          command:
-            - docker
+            - make
             - build
-            - --build-arg
-            - ARG_SRC=...
-      - name: Publish to Quay
-        type: docker_publish
+        # artifacts will be available under 
+        # /kontinuous/artifacts for next stages
+        artifacts:
+          - build/bin/**
+      - name: Package App
+        image: docker:1.8.3
+        type: command
         params:
-          external_registry: quay.io
-          external_image_name: acaleph/kontinuous
-          require_credentials: "TRUE"
-        secrets:
-          - docker-credentials
+          command:
+            - make
+            - package
+            - publish
+            - BIN_PATH=/kontinuous/artifacts/pingpong
+      # This should run the application together in the Job
+      # and we run integration tests
+      # - name: Integration Test
+      #   with_containers:
+      #     - name: pingpong-app
+      #       params:
+      #         image: 
+      # # This should deploy the finish product. :) 
+      # - name: Deploy App
+      #   type: deploy
+      #   params:
+      #     service:
+      #       ports:
+      #     deployment:
+      #       containers:
+      #         - 
