@@ -20,11 +20,12 @@ spec:
     notif:
       - type: slack
         metadata:
-          url: 
-          channel: 
-          user: kontinuous
+          url: slackurl 
+          channel: slackchannel
+          user: slackuser
     secrets:
-      - pingpong-secrets
+      - acaleph-notifier
+      - quayregistrycreds
     stages:
       - name: Build and Unit Test
         type: command
@@ -33,8 +34,6 @@ spec:
           command:
             - make
             - build
-        # artifacts will be available under 
-        # /kontinuous/artifacts for next stages
         artifacts:
           - build/bin/**
       - name: Package App
