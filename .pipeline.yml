@@ -37,14 +37,19 @@ spec:
         artifacts:
           - build/bin/**
       - name: Package App
-        image: docker:1.8.3
         type: command
         params:
+          image: docker:1.8.3
           command:
             - make
             - package
             - publish
             - BIN_PATH=/kontinuous/artifacts/pingpong
+      - name: Deploy App
+        type: command
+        params:
+          DEPLOY: true
+          DEPLOY_FILE: manifest.yaml
       # This should run the application together in the Job
       # and we run integration tests
       # - name: Integration Test

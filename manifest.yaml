@@ -1,0 +1,10 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pingpong
+  namespace: acaleph
+spec:
+  containers:
+    - name: pingpong
+      image: quay.io/acaleph/pingpong:latest
+      imagePullPolicy: Always
