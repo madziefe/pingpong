@@ -41,7 +41,7 @@ spec:
         params:
           image: docker:1.8.3
           command:
-            - package-app.sh
+            - ./package-app.sh
             - /kontinuous/artifacts/pingpong
       - name: Deploy App
         type: command
