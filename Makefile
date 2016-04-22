@@ -29,16 +29,3 @@ build: format
 	@echo "--> Building..."
 	@mkdir -p build/bin
 	@CGO_ENABLED=0 go build -a -installsuffix cgo -o ${BIN_PATH} .
-
-package: 
-	@echo "--> Packaging..."
-	@mkdir -p build/artifact
-	@cp ${BIN_PATH} build/artifact/${APP_NAME}
-	@docker build --build-arg APP_SRC=build/artifact/${APP_NAME} -t quay.io/acaleph/pingpong:latest .
-	@docker tag -f quay.io/acaleph/pingpong:latest quay.io/acaleph/pingpong:${DOCKER_TAG}
-
-publish: 
-	@echo "--> Publishing..."
-	@docker login -u "${dockeruser}" -p "${dockerpassword}" -e "${dockeremail}" quay.io
-	@docker push quay.io/acaleph/pingpong:latest
-	@docker push quay.io/acaleph/pingpong:${DOCKER_TAG}
