@@ -9,8 +9,9 @@ if [[ "$1" != "" ]]; then
 fi
 
 echo "--> Packaging..."
-mkdir -p build/artifact
+mkdir -p build/bin
 if [[ "$ARTIFACT_PATH" != "" ]]; then
+	echo "copy ${ARTIFACT_PATH} to ${BIN_PATH}"
 	cp ${ARTIFACT_PATH} ${BIN_PATH}
 fi
 docker build -t quay.io/acaleph/pingpong:latest  -f Dockerfile .
