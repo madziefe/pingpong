@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
 export APP_NAME=pingpong
-export BIN_PATH=build/bin/${APP_NAME}
+export BIN_PATH=build/bin
 export ARTIFACT_PATH=
 
 if [[ "$1" != "" ]]; then
