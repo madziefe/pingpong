@@ -13,7 +13,7 @@ mkdir -p build/artifact
 if [[ "$ARTIFACT_PATH" != "" ]]; then
 	cp ${ARTIFACT_PATH} ${BIN_PATH}
 fi
-docker build -t quay.io/acaleph/pingpong:latest .
+docker build -f -t quay.io/acaleph/pingpong:latest .
 docker tag -f quay.io/acaleph/pingpong:latest quay.io/acaleph/pingpong:${COMMIT}
 if [[ "$BRANCH" != "" ]]; then
 	docker tag -f quay.io/acaleph/pingpong:latest quay.io/acaleph/pingpong:${BRANCH}
