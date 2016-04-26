@@ -2,12 +2,11 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: pingpong
+  name: pingpong-test
   namespace: acaleph
-
 spec:
   selector:
-    app: pingpong
+    app: pingpong-test
     type: ci-cd
   ports:
     - name: api
@@ -17,10 +16,10 @@ spec:
 kind: Pod
 apiVersion: v1
 metadata:
-  name: pingpong
+  name: pingpong-test
   namespace: acaleph
   labels:
-    app: pingpong
+    app: pingpong-test
     type: ci-cd    
 spec:
   containers:

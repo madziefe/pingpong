@@ -15,8 +15,6 @@ spec:
       labels:
         app: service
         type: api
-    # move secrets to build level instead
-    # of stage level
     notif:
       - type: slack
         metadata:
@@ -43,6 +41,15 @@ spec:
           command:
             - ./package-app.sh
             - /kontinuous/src/artifacts/pingpong
+      - name: Integration Test
+        type: command
+        params: 
+           image: debian:jessie
+           command:
+              - ./integration-test.sh
+              - http://pingpong-test:8080
+           dependencies:
+              - integration-test.yaml
       - name: Deploy App
         type: command
         params:

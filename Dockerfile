@@ -1,4 +1,4 @@
-FROM docker:1.8.3
+FROM busybox:latest
 MAINTAINER admin@acale.ph
 
 ADD build/bin/pingpong /usr/bin/pingpong
