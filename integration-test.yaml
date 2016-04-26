@@ -2,7 +2,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: pingpong-test
+  name: pingpongtest
   namespace: acaleph
 spec:
   selector:
@@ -16,7 +16,7 @@ spec:
 kind: Pod
 apiVersion: v1
 metadata:
-  name: pingpong-test
+  name: pingpongtest
   namespace: acaleph
   labels:
     app: pingpong-test
