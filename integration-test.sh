@@ -1,6 +1,9 @@
 #!/bin/sh
 
 test() {
+	echo 'Delay to start integration test...'
+	sleep 15
+
 	echo 'Running Integration Test...'
 	local url="$1"
 
