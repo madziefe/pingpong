@@ -46,8 +46,8 @@ spec:
       - name: Deploy App
         type: command
         params:
-          DEPLOY: "TRUE"
-          DEPLOY_FILE: manifest.yaml
+          deploy: true
+          deploy_file: manifest.yaml
       # This should run the application together in the Job
       # and we run integration tests
       # - name: Integration Test
