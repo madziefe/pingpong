@@ -47,7 +47,7 @@ spec:
            image: alpine:latest
            command:
               - ./integration-test.sh
-              - http://pingpongtest:8080
+              - pingpongtest:8080
            dependencies:
               - integration-test.yaml
       - name: Deploy App
