@@ -23,7 +23,7 @@ metadata:
     type: ci-cd    
 spec:
   containers:
-    - name: pingpong
+    - name: pingpongtest
       image: quay.io/acaleph/pingpong:latest
       imagePullPolicy: Always
       ports:

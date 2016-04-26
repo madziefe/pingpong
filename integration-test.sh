@@ -7,7 +7,7 @@ test() {
 	local url="$1"
 	echo "Running Integration Test for ${url}"
 
-	pong=$(wget -q -O - "${url}/ping")
+	pong=$(wget -q -O - "\"${url}/ping\"")
 
 	if [ "$?" != "0" ]; then 
 		echo "Error connecting to pingpong server."
