@@ -44,7 +44,7 @@ spec:
       - name: Integration Test
         type: command
         params: 
-           image: debian:jessie
+           image: alpine:latest
            command:
               - ./integration-test.sh
               - http://pingpong-test:8080
