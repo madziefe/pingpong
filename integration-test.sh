@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 test() {
 	echo 'Running Integration Test...'
@@ -6,12 +6,12 @@ test() {
 
 	pong=$(wget -q -O - "${url}/ping")
 
-	if [[ "$?" != "0" ]]; then 
+	if [ "$?" != "0" ]; then 
 		echo "Error connecting to pingpong server."
 		return 1
 	fi
 
-	if [[ "${pong}" != "pong" ]]; then
+	if [ "${pong}" != "pong" ]; then
 		echo "didn't receive the correct response."
 		return 1
 	fi
