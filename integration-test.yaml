@@ -2,31 +2,46 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: pingpongtest
+  name: pingpong-test
   namespace: acaleph
+  labels:
+    app: pingpong
+    type: api
+    env: testing
 spec:
   selector:
-    app: pingpong-test
-    type: ci-cd
+    app: pingpong
+    type: api
+    env: testing
   ports:
     - name: api
       port: 8080
       targetPort: 8080
+
 ---
-kind: Pod
+kind: ReplicationController
 apiVersion: v1
 metadata:
-  name: pingpongtest
+  name: pingpong-test
   namespace: acaleph
   labels:
-    app: pingpong-test
-    type: ci-cd    
+    app: pingpong
+    type: api
+    env: testing
 spec:
-  containers:
-    - name: pingpongtest
-      image: quay.io/acaleph/pingpong:latest
-      imagePullPolicy: Always
-      ports:
-        - name: api
-          containerPort: 8080
-          protocol: TCP
+  replicas: 1
+  template:
+    metadata:
+      name: pingpong-test
+      labels:
+        app: pingpong
+        type: api
+        env: testing
+    spec:
+      containers:
+        - name: pingpong-test
+          image: quay.io/acaleph/pingpong:latest
+          imagePullPolicy: Always
+          ports:
+            - name: api
+              containerPort: 8080
