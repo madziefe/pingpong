@@ -22,10 +22,17 @@ spec:
           channel: slackchannel
           user: slackuser
     secrets:
-      - acaleph-notifier
+      - acalephnotifier
       - quayregistrycreds
     stages:
-      - name: Build and Unit Test
+      - name: Unit Test
+        type: command
+        params:
+          image: golang:1.6
+          command:
+            - make
+            - test
+      - name: Create Binary
         type: command
         params:
           image: golang:1.6
@@ -54,19 +61,3 @@ spec:
         type: deploy
         params:
           deploy_file: manifest.yaml
-      # This should run the application together in the Job
-      # and we run integration tests
-      # - name: Integration Test
-      #   with_containers:
-      #     - name: pingpong-app
-      #       params:
-      #         image: 
-      # # This should deploy the finish product. :) 
-      # - name: Deploy App
-      #   type: deploy
-      #   params:
-      #     service:
-      #       ports:
-      #     deployment:
-      #       containers:
-      #         - 
