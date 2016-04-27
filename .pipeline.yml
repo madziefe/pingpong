@@ -44,7 +44,7 @@ spec:
       - name: Integration Test
         type: command
         params: 
-           image: alpine:latest
+           image: busybox:latest
            command:
               - ./integration-test.sh
               - http://pingpong-test:8080
