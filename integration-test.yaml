@@ -33,6 +33,7 @@ spec:
   template:
     metadata:
       name: pingpong-test
+      namespace: acaleph
       labels:
         app: pingpong
         type: api
