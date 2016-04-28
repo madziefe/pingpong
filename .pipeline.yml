@@ -17,12 +17,8 @@ spec:
         type: api
     notif:
       - type: slack
-        metadata:
-          url: slackurl 
-          channel: slackchannel
-          user: slackuser
     secrets:
-      - acaleph-notifier
+      - acalephnotifier
       - quayregistrycreds
     stages:
       - name: Build and Unit Test
