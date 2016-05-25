@@ -21,8 +21,8 @@ spec:
       - acalephnotifier
       - quayregistrycreds
     vars:
-      name: "pingpongVars"
-      namespace: "acaleph"
+      name: pingpongVars
+      namespace: acaleph
     stages:
       - name: Unit Test
         type: command
