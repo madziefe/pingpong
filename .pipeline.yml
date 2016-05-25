@@ -20,6 +20,9 @@ spec:
     secrets:
       - acalephnotifier
       - quayregistrycreds
+    vars:
+      name: "pingpongVars"
+      namespace: "acaleph"
     stages:
       - name: Unit Test
         type: command
@@ -57,3 +60,9 @@ spec:
         type: deploy
         params:
           deploy_file: manifest.yaml
+        vars:
+          dockerRegistry: quay.io
+          dockerRepo: acaleph
+          imageName: pingpong
+          dockerTag: latest
+          pullPolicy: Always          

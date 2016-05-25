@@ -2,12 +2,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: pingpong
-  namespace: acaleph
+  name: {{.name}}
+  namespace: {{.namespace}}
 
 spec:
   selector:
-    app: pingpong
+    app: {{.name}}
     type: ci-cd
   ports:
     - name: api
@@ -17,16 +17,16 @@ spec:
 kind: Pod
 apiVersion: v1
 metadata:
-  name: pingpong
-  namespace: acaleph
+  name: {{.name}}
+  namespace: {{.namespace}}
   labels:
-    app: pingpong
+    app: {{.name}}
     type: ci-cd    
 spec:
   containers:
-    - name: pingpong
-      image: quay.io/acaleph/pingpong:latest
-      imagePullPolicy: Always
+    - name: {{.name}}
+      image: {{.dockerRegistry}}/{{.dockerRepo}}/{{.imageName}}:{{.dockerTag}}
+      imagePullPolicy: {{default "Always" .pullPolicy}}
       ports:
         - name: api
           containerPort: 8080
