@@ -1,3 +1,4 @@
+
 ---
 kind: Pipeline
 apiVersion: v1alpha1
@@ -43,10 +44,13 @@ spec:
       - name: Package App
         type: command
         params:
-          image: docker:1.8.3
+          image: {{.imageName}}:{{.tag}}
           command:
             - ./package-app.sh
             - /kontinuous/src/artifacts/pingpong
+          vars:
+            imageName: docker
+            tag: 1.8.3
       - name: Integration Test
         type: command
         params: 
