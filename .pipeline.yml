@@ -51,7 +51,7 @@ spec:
         vars:
           imageName: docker
           tag: 1.8.3  
-         - name: Integration Test
+      - name: Integration Test
         type: command
         params: 
            image: busybox:latest
