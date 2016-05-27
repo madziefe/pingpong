@@ -49,8 +49,8 @@ spec:
             - ./package-app.sh
             - /kontinuous/src/artifacts/pingpong
         vars:
-            imageName: docker
-            tag: 1.8.3  
+          imageName: docker
+          tag: 1.8.3  
          - name: Integration Test
         type: command
         params: 
