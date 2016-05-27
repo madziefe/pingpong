@@ -48,10 +48,10 @@ spec:
           command:
             - ./package-app.sh
             - /kontinuous/src/artifacts/pingpong
-          vars:
+        vars:
             imageName: docker
-            tag: 1.8.3
-      - name: Integration Test
+            tag: 1.8.3  
+         - name: Integration Test
         type: command
         params: 
            image: busybox:latest
