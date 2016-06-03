@@ -63,7 +63,7 @@ spec:
       - name: Deploy App
         type: deploy
         params:
-          deploy_dir: resources/
+          deploy_dir: resources
         vars:
           dockerRegistry: quay.io
           dockerRepo: acaleph
