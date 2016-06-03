@@ -1,1 +1,31 @@
-service.yml
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{.name}}
+  namespace: {{default "acaleph" .namespace}}
+
+spec:
+  selector:
+    app: {{.name}}
+    type: ci-cd
+  ports:
+    - name: api
+      port: 8080
+      targetPort: 8080
+kind: Pod
+apiVersion: v1
+metadata:
+  name: {{.name}}
+  namespace: {{.namespace}}
+  labels:
+    app: {{.name}}
+    type: ci-cd    
+spec:
+  containers:
+    - name: {{.name}}
+      image: {{.dockerRegistry}}/{{.dockerRepo}}/{{.imageName}}:{{.dockerTag}}
+      imagePullPolicy: {{default "Always" .pullPolicy}}
+      ports:
+        - name: api
+          containerPort: 8080
+          protocol: TCP
