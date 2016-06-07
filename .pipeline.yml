@@ -60,6 +60,10 @@ spec:
               - http://pingpong-test:8080
            dependencies:
               - integration-test.yaml
+      - name: Confirm Deployment
+        type: wait
+        params:
+          message: Do you want to deploy pingpong?
       - name: Deploy App
         type: deploy
         params:
