@@ -68,6 +68,7 @@ spec:
         type: deploy
         params:
           deploy_dir: resources
+          expose: true
         vars:
           dockerRegistry: quay.io
           dockerRepo: acaleph
