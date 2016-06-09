@@ -60,6 +60,10 @@ spec:
               - http://pingpong-test:8080
            dependencies:
               - integration-test.yaml
+      - name: Wait for Confirmation
+        type: wait
+        params:
+          message: Do you want to continue?
       - name: Deploy App
         type: deploy
         params:
